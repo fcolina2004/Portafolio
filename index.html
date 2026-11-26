@@ -275,7 +275,7 @@
         <!-- Desplegable Currículum -->
         <div class="accordion-item mb-3 border rounded-3 overflow-hidden">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#panelCurriculum">
+            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-target="#panelCurriculum" aria-expanded="false">
               Currículum (CV)
             </button>
           </h2>
@@ -323,7 +323,7 @@
         <!-- Desplegable Proyectos -->
         <div class="accordion-item border rounded-3 overflow-hidden">
           <h2 class="accordion-header">
-            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#panelProyectos">
+            <button class="accordion-button collapsed fw-semibold" type="button" data-bs-target="#panelProyectos" aria-expanded="false">
               Proyectos
             </button>
           </h2>
@@ -369,10 +369,7 @@
     const botonesAcordeon = document.querySelectorAll("#portafolioAcordeon .accordion-button");
 
     botonesAcordeon.forEach(function (boton) {
-      boton.addEventListener("click", function (evento) {
-        evento.preventDefault();
-        evento.stopPropagation();
-
+      boton.addEventListener("click", function () {
         const selectorObjetivo = boton.getAttribute("data-bs-target");
         const panel = document.querySelector(selectorObjetivo);
 
@@ -396,6 +393,9 @@
         }
       });
     });
+  </script>
+</body>
+</html>
   </script>
 </body>
 </html>
