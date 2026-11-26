@@ -158,6 +158,10 @@
       box-shadow: 0 0 0 0.2rem rgba(109, 40, 217, 0.2);
     }
 
+    .panel-oculto {
+      display: none;
+    }
+
     .btn-morado {
       background-color: var(--acento-morado);
       border-color: var(--acento-morado);
@@ -279,7 +283,7 @@
               Currículum (CV)
             </button>
           </h2>
-          <div id="panelCurriculum" class="accordion-collapse collapse" data-bs-parent="#portafolioAcordeon">
+          <div id="panelCurriculum" class="panel-oculto">
             <div class="accordion-body">
               <div class="d-flex flex-wrap justify-content-between align-items-center gap-2 mb-3">
                 <span class="small text-secondary">Resumen Curricular — Frederick Colina</span>
@@ -327,7 +331,7 @@
               Proyectos
             </button>
           </h2>
-          <div id="panelProyectos" class="accordion-collapse collapse" data-bs-parent="#portafolioAcordeon">
+          <div id="panelProyectos" class="panel-oculto">
             <div class="accordion-body">
               <div class="mb-3">
                 <h3 class="h6 fw-bold mb-1">DevCursos</h3>
@@ -364,9 +368,9 @@
     </div>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const botonesAcordeon = document.querySelectorAll("#portafolioAcordeon .accordion-button");
+    const panelesAcordeon = document.querySelectorAll("#portafolioAcordeon .panel-oculto");
 
     botonesAcordeon.forEach(function (boton) {
       boton.addEventListener("click", function () {
@@ -374,28 +378,25 @@
         const panel = document.querySelector(selectorObjetivo);
 
         if (panel) {
-          const estaAbierto = panel.classList.contains("show");
+          const yaEstaVisible = panel.style.display === "block";
 
-          document.querySelectorAll("#portafolioAcordeon .accordion-collapse").forEach(function (otroPanel) {
-            otroPanel.classList.remove("show");
+          panelesAcordeon.forEach(function (otroPanel) {
+            otroPanel.style.display = "none";
           });
 
-          document.querySelectorAll("#portafolioAcordeon .accordion-button").forEach(function (otroBoton) {
+          botonesAcordeon.forEach(function (otroBoton) {
             otroBoton.classList.add("collapsed");
             otroBoton.setAttribute("aria-expanded", "false");
           });
 
-          if (!estaAbierto) {
-            panel.classList.add("show");
+          if (!yaEstaVisible) {
+            panel.style.display = "block";
             boton.classList.remove("collapsed");
             boton.setAttribute("aria-expanded", "true");
           }
         }
       });
     });
-  </script>
-</body>
-</html>
   </script>
 </body>
 </html>
