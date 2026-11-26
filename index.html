@@ -365,8 +365,37 @@
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    const botonesAcordeon = document.querySelectorAll("#portafolioAcordeon .accordion-button");
+
+    botonesAcordeon.forEach(function (boton) {
+      boton.addEventListener("click", function (evento) {
+        evento.preventDefault();
+        evento.stopPropagation();
+
+        const selectorObjetivo = boton.getAttribute("data-bs-target");
+        const panel = document.querySelector(selectorObjetivo);
+
+        if (panel) {
+          const estaAbierto = panel.classList.contains("show");
+
+          document.querySelectorAll("#portafolioAcordeon .accordion-collapse").forEach(function (otroPanel) {
+            otroPanel.classList.remove("show");
+          });
+
+          document.querySelectorAll("#portafolioAcordeon .accordion-button").forEach(function (otroBoton) {
+            otroBoton.classList.add("collapsed");
+            otroBoton.setAttribute("aria-expanded", "false");
+          });
+
+          if (!estaAbierto) {
+            panel.classList.add("show");
+            boton.classList.remove("collapsed");
+            boton.setAttribute("aria-expanded", "true");
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
